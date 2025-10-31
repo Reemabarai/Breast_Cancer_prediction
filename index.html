@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breast Cancer Prediction </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  </head>
+  <body>
+  <div class="container">
+    <h1 style="text-align:center">Breast Cancer Prediction Model</h1> 
+    <img style="width:100%; height:200px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJjXj5fHn4TQJ1OH2-bzi3KxnJ9mrgkCHfSw&s" alt="">
+    <form action="/predict" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Input All Medical Breast Cancer Features (from Biopsy reports)</label>
+          <input type="text" name="feature" class="form-control" placeholder="e.g. 2.6337, 3.2937, 4.1220, ..." />
+
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      
+      
+      
+  {% for i in message %}
+  {% if i == "Cancerous" %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{ url_for('static', filename='images.jpeg')}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Cancerous<h6>(Malignant)</h6></h5>
+     <p class="card-text">This indicates that the tumor is likely malignant, which means it may be harmful and has the potential to grow and spread. It is strongly advised to consult a medical professional immediately for further diagnosis and treatment planning.
+
+     </p>
+    </div>
+   </div>
+
+  {% else %}
+      <div class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='image.jpeg')}}" class="card-img-top" alt="...">
+         <div class="card-body">
+          <h5 class="card-title">Not Cancerous<h6>(Benign)</h6></h5>
+          <p class="card-text">This indicates that the tumor is likely benign, meaning it is not harmful and does not spread to other parts of the body. However, regular check-ups are still recommended for safety.</p>
+        </div>
+      </div>
+
+  {% endif %}
+  {% endfor %}
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  </body>
+</html>
